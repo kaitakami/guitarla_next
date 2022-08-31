@@ -7,10 +7,10 @@ const Carrito = ({ carrito, actualizarCantidad, eliminarProducto }) => {
   const [total, setTotal] = useState(0);
   useEffect(() => {
     const calculoTotal = carrito.reduce(
-      (total, producto) => total + (producto.cantidad * producto.precio),
+      (total, producto) => total + producto.cantidad * producto.precio,
       0
     );
-    setTotal(calculoTotal)
+    setTotal(calculoTotal);
   }, [carrito]);
 
   return (
@@ -22,7 +22,7 @@ const Carrito = ({ carrito, actualizarCantidad, eliminarProducto }) => {
           {carrito.length === 0
             ? "Carrito Vacio"
             : carrito.map((producto) => (
-                <div key={producto._id} className={styles.producto}>
+                <div key={producto.id} className={styles.producto}>
                   <div>
                     <Image
                       layout="responsive"
@@ -67,7 +67,7 @@ const Carrito = ({ carrito, actualizarCantidad, eliminarProducto }) => {
                   <button
                     typeof="button"
                     className={styles.eliminar}
-                    onClick={() => eliminarProducto(producto._id)}
+                    onClick={() => eliminarProducto(producto.id)}
                   >
                     X
                   </button>

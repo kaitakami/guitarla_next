@@ -5,8 +5,10 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }) {
   const [carrito, setCarrito] = useState([]);
 
+  console.log();
+
   useEffect(() => {
-    const carritoLS = JSON.parse(localStorage.getItem("carrito") ?? []);
+    const carritoLS = JSON.parse(localStorage.getItem("carrito")) ?? [];
     if (carritoLS.length !== 0) {
       setCarrito(carritoLS);
     }
@@ -17,9 +19,10 @@ function MyApp({ Component, pageProps }) {
   }, [carrito]);
 
   const agregarCarrito = (producto) => {
-    if (carrito.some((articulo) => articulo._id === producto._id)) {
+    console.log(producto)
+    if (carrito.some((articulo) => articulo.id === producto.id)) {
       const carritoActualizado = carrito.map((articulo) => {
-        if (articulo._id === producto._id) {
+        if (articulo.id === producto.id) {
           articulo.cantidad = producto.cantidad;
         }
         return articulo;
@@ -28,6 +31,7 @@ function MyApp({ Component, pageProps }) {
     } else {
       setCarrito([...carrito, producto]);
     }
+    setCarrito([...carrito, producto]);
   };
 
   const actualizarCantidad = (producto) => {
@@ -38,13 +42,15 @@ function MyApp({ Component, pageProps }) {
       return articulo;
     });
 
-    setCarrito(carritoActualizado)
+    setCarrito(carritoActualizado);
   };
 
-  const eliminarProducto = id => {
-    const carritoActualizado = carrito.filter(articulo => articulo._id !== id)
-    setCarrito(carritoActualizado)
-  }
+  const eliminarProducto = (id) => {
+    const carritoActualizado = carrito.filter(
+      (articulo) => articulo.id !== id
+    );
+    setCarrito(carritoActualizado);
+  };
 
   return (
     <Component
