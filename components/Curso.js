@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from "../styles/Curso.module.css";
 
 const Curso = ({ curso }) => {
@@ -8,8 +9,9 @@ const Curso = ({ curso }) => {
         <div className={styles.contenido}>
           <h2 className="heading">{titulo}</h2>
           <p className={styles.texto}>{contenido}</p>
-
-          <a href="#" className={styles.enlace}>Más información</a>
+          <Link href="/nosotros">
+          <a className={styles.enlace}>Más información</a>
+          </Link>
         </div>
       </div>
 
