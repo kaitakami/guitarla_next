@@ -5,8 +5,6 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }) {
   const [carrito, setCarrito] = useState([]);
 
-  console.log();
-
   useEffect(() => {
     const carritoLS = JSON.parse(localStorage.getItem("carrito")) ?? [];
     if (carritoLS.length !== 0) {
@@ -19,7 +17,6 @@ function MyApp({ Component, pageProps }) {
   }, [carrito]);
 
   const agregarCarrito = (producto) => {
-    console.log(producto)
     if (carrito.some((articulo) => articulo.id === producto.id)) {
       const carritoActualizado = carrito.map((articulo) => {
         if (articulo.id === producto.id) {
